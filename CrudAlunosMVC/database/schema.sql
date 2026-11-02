@@ -1,0 +1,11 @@
+-- Execute este script no SQL Editor do Neon (PostgreSQL).
+CREATE TABLE IF NOT EXISTS alunos (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR(120) NOT NULL,
+    email VARCHAR(160) NOT NULL UNIQUE,
+    curso VARCHAR(120) NOT NULL,
+    semestre INTEGER NOT NULL CHECK (semestre BETWEEN 1 AND 20),
+    criado_em TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_alunos_nome ON alunos (nome);
